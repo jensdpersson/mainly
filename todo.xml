@@ -1,0 +1,29 @@
+<todo>
+    <todo>
+        Positional args of some sort. Basic trigger would be a Flag with no names.
+        We need a new attribute for position. Or perhaps ordering is better?
+        So if there are 3 Flags and 3 args that don't match the named flags then
+        order() would determine which flag goes where. 
+    </todo>
+    <todo>
+        user module should be called test. 
+        there should be unit tests that run various generated
+        main classes and match output. 
+        Compilation errors should never be a correct scenario 
+        so all tests can assume the main class is generated and compiled ok. 
+        But there needs to be tests for wrongly applied params, 
+        making sure error feedback makes sense.
+    </todo>
+    <todo>
+        There should be a notion of subcommands, 
+        let's say a Flag field has an object type.
+        Could we new that class and have following args be applied on that? 
+    </todo>
+    <todo>
+        Unknown flags should be complained about
+    </todo>
+    <todo>
+        A known flag should not be treated as a parameter for an earlier flag
+        SomeMain --flag-that-needs-param --other-flag-that-takes-param param
+    </todo>
+</todo>
