@@ -176,8 +176,9 @@ public class MainlyProcessor extends AbstractProcessor {
         write(w, 8, "}\n");
     }
 
-    final static String JUST_ASSIGN = "=a";
-    final static String PARSEINT_ASSIGN = "=Integer.parseInt(a)";
+    final static String JUST_ASSIGN = "= a";
+    final static String PARSEINT_ASSIGN = "= Integer.parseInt(a)";
+    final static String PARSEBOOL_ASSIGN = "= Boolean.parseBoolean(a)";
     
     String assign(Element ee) {
         String[] result = new String[1]; 
@@ -239,6 +240,8 @@ public class MainlyProcessor extends AbstractProcessor {
         public Void visitPrimitive(PrimitiveType t, String[] p) {
             if (t.getKind() == TypeKind.INT) {
                 p[0] = PARSEINT_ASSIGN;
+            } else if (t.getKind() == TypeKind.BOOLEAN) {
+                p[0] = PARSEBOOL_ASSIGN;
             }
             return null;
         }
