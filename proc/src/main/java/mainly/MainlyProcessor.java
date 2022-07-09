@@ -8,6 +8,8 @@ import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
 import javax.annotation.processing.SupportedAnnotationTypes;
+import javax.annotation.processing.SupportedSourceVersion;
+import javax.lang.model.SourceVersion;
 import javax.annotation.processing.Filer;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.type.ArrayType;
@@ -36,6 +38,7 @@ import java.util.LinkedList;
 
 @AutoService(Processor.class)
 @SupportedAnnotationTypes("mainly.*")
+@SupportedSourceVersion(SourceVersion.RELEASE_11)
 public class MainlyProcessor extends AbstractProcessor {
 
     @Override
@@ -67,7 +70,7 @@ public class MainlyProcessor extends AbstractProcessor {
             String pkgName = fq.substring(0, dot);
             String className = fq.substring(dot+1);
             Filer filer = processingEnv.getFiler();
-            JavaFileObject file = filer.createSourceFile(className, elem);
+            JavaFileObject file = filer.createSourceFile(fq, elem);
             Writer w = file.openWriter();
             
             write(w, 0, "package ", pkgName, ";\n\n");
@@ -177,8 +180,8 @@ public class MainlyProcessor extends AbstractProcessor {
     }
 
     final static String JUST_ASSIGN = "= a";
-    final static String PARSEINT_ASSIGN = "= Integer.parseInt(a)";
-    final static String PARSEBOOL_ASSIGN = "= Boolean.parseBoolean(a)";
+    final static String PARSEINT_ASSIGN = " = Integer.parseInt(a)";
+    final static String PARSEBOOL_ASSIGN = " = Boolean.parseBoolean(a)";
     
     String assign(Element ee) {
         String[] result = new String[1]; 
